@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         getList() {
-            axios.get('http://localhost:8000/api/lists').then(res => {
+            axios.get('http://p08c4o8g8k8kcg8kg88gwsso.207.148.119.27.sslip.io/api/lists').then(res => {
                 this.todolist = res.data.data
                 console.log(this.todolist)
             });
@@ -70,7 +70,7 @@ export default {
             if(confirm('Are You Sure You Want To Delete This Activity?'))
             {
                 // console.log(listId)
-                axios.delete(`http://localhost:8000/api/lists/${listId}`)
+                axios.delete(`http://p08c4o8g8k8kcg8kg88gwsso.207.148.119.27.sslip.io/api/lists/${listId}`)
                 .then(res => {
                     console.log(res.data);
                     alert("Activity Deleted Successfully");
@@ -84,7 +84,7 @@ export default {
         },
 
         completedList(list) {
-            axios.patch(`http://localhost:8000/api/lists/${list}`, {
+            axios.patch(`http://p08c4o8g8k8kcg8kg88gwsso.207.148.119.27.sslip.io/api/lists/${list}`, {
                 list_status: 'Completed' // This can still be included or omitted
             })
             .then(res => {
