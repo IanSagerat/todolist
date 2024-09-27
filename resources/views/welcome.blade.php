@@ -5,7 +5,7 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todolist</title>
-    @vite(['src/css/main.css', 'src/js/app.js']) <!-- Include Vite assets -->
+    @vite(['src/assets/main.css', 'src/js/app.js']) <!-- Include Vite assets -->
 </head>
 <body>
     <div id="app"></div>
