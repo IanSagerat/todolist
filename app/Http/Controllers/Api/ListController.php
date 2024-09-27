@@ -49,8 +49,7 @@ class ListController extends Controller
             'data' => new ListResource($list)
         ], 200);
     }
-    
-    
+     
     public function show(Lists $list) 
     {
         return new ListResource($list); 
@@ -75,7 +74,6 @@ class ListController extends Controller
         ], 200);
     }
     
-
     public function update(Request $request, Lists $list) 
     {
         $validator = Validator::make($request->all(),[
@@ -100,7 +98,6 @@ class ListController extends Controller
         ], 200);
     }
     
-
     public function destroy(Lists $list) 
     {
         $list->delete();
