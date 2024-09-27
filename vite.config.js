@@ -1,4 +1,3 @@
-import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
@@ -6,14 +5,9 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'], // Adjust paths as necessary
+            input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
         vue(),
     ],
-    resolve: {
-        alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url)),
-        },
-    },
 });
