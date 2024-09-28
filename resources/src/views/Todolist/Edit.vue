@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         getList(list_id) {
-            axios.get(`http://p08c4o8g8k8kcg8kg88gwsso.207.148.119.27.sslip.io/api/lists/${list_id}`).then(res => {
+            axios.get(`http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists/${list_id}`).then(res => {
                 this.model.todolist = res.data.data; 
             }).catch(error => {
                 console.log(error);
@@ -72,7 +72,7 @@ export default {
         {
             var $this = this;
             const list_id = this.$route.params.list_id;
-            axios.put(`http://p08c4o8g8k8kcg8kg88gwsso.207.148.119.27.sslip.io/api/lists/${list_id}`, this.model.todolist)
+            axios.put(`http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists/${list_id}`, this.model.todolist)
                 .then(res => {
                     console.log(res.data);
                     alert(res.data.message);
