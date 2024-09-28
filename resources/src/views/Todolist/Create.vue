@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios';
-
+const baseURL = window.location.origin;
 export default {
     name: 'todolistCreate',
     data() {
@@ -51,7 +51,7 @@ export default {
     methods: {
         saveList() {
             var $this = this;
-            axios.post('http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists', this.model.todolist)
+            axios.post(`${baseURL}/api/lists`, this.model.todolist)
                 .then(res => {
                     console.log(res.data);
                     alert(res.data.message);

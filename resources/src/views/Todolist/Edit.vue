@@ -38,7 +38,7 @@
 
 <script>
 import axios from 'axios';
-
+const baseURL = window.location.origin;
 export default {
     name: 'todolistEdit',
     data() {
@@ -58,8 +58,8 @@ export default {
     },
     methods: {
         getList(list_id) {
-            axios.get(`http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists/${list_id}`).then(res => {
-                this.model.todolist = res.data.data; 
+            axios.get(`${baseURL}/api/lists/${list_id}`).then(res => {
+                this.model.todolist = res.data.data;
             }).catch(error => {
                 console.log(error);
                 if (error.response && error.response.status === 404) {
@@ -68,35 +68,27 @@ export default {
             });
         },
 
-        updateList() 
-        {
+        updateList() {
             var $this = this;
             const list_id = this.$route.params.list_id;
-            axios.put(`http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists/${list_id}`, this.model.todolist)
-                .then(res => {
-                    console.log(res.data);
-                    alert(res.data.message);
+            axios.put(`${baseURL}/api/lists/${list_id}`, this.model.todolist)
+            .then(res => {
+                console.log(res.data);
+                alert(res.data.message);
 
-                    this.errorList = {}; // Clear errors after successful submission
-                })
-                .catch(function (error) 
-                {
-                    if (error.response) 
-                    {
-                        if (error.response.status === 422) 
-                        {
-                            $this.errorList = error.response.data.errors;
-                        }
-                    } 
-                    else if (error.request) 
-                    {
-                        console.log(error.request);
-                    } 
-                    else 
-                    {
-                        console.log('Error', error.message);
+                this.errorList = {}; // Clear errors after successful submission
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    if (error.response.status === 422) {
+                        $this.errorList = error.response.data.errors;
                     }
-                });
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log('Error', error.message);
+                }
+            });
         }
     }
 };

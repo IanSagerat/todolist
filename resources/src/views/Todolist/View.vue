@@ -46,6 +46,8 @@
   
 <script>
 import axios from 'axios'
+
+const baseURL = window.location.origin;
 export default {
     name: 'todolist',
     data() {
@@ -60,31 +62,32 @@ export default {
     },
     methods: {
         getList() {
-            axios.get('http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists').then(res => {
-                this.todolist = res.data.data
-                console.log(this.todolist)
+            axios.get(`${baseURL}/api/lists`).then(res => {
+                this.todolist = res.data.data;
+                console.log(this.todolist);
+            }).catch(error => {
+                console.error(error);
             });
         },
 
-        deleteList(listId){
-            if(confirm('Are You Sure You Want To Delete This Activity?'))
-            {
-                // console.log(listId)
-                axios.delete(`http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists/${listId}`)
-                .then(res => {
-                    console.log(res.data);
-                    alert("Activity Deleted Successfully");
-                    // You can add any additional logic here, like redirecting or updating the UI
-                })
-                .catch(error => {
-                    console.error(error);
-                    alert("Failed to delete activity.");
-                });
+        deleteList(listId) {
+            if (confirm('Are You Sure You Want To Delete This Activity?')) {
+                axios.delete(`${baseURL}/api/lists/${listId}`)
+                    .then(res => {
+                        console.log(res.data);
+                        alert("Activity Deleted Successfully");
+                        // Optionally refresh the list
+                        this.getList();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert("Failed to delete activity.");
+                    });
             }
         },
 
         completedList(list) {
-            axios.patch(`http://s8ogsogwook400gsw044so48.207.148.119.27.sslip.io/api/lists/${list}`, {
+            axios.patch(`${baseURL}/api/lists/${list}`, {
                 list_status: 'Completed' // This can still be included or omitted
             })
             .then(res => {
@@ -102,12 +105,6 @@ export default {
                 }
             });
         }
-
-
-
-
-
-
     }
 }
 </script>
